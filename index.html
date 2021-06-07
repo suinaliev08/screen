@@ -1,0 +1,70 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="main">
+        <video id="video" autoplay width="1000" height="700"></video>
+        <canvas id="picture"></canvas>
+        <button class="startwebcam">Kamerayı aç</button>
+        <a download="">Fotoğraf çek</a>
+    </div>
+    <script src="https://unpkg.com/webcam-easy@1.0.5/dist/webcam-easy.min.js"></script>
+    <script>
+const video=document.getElementById("video");
+const canvas=document.getElementById("picture");
+const takepicbutton=document.querySelector("a");
+const startwebcam=document.querySelector(".startwebcam");
+
+const webcam=new Webcam(video,"user",canvas);
+
+startwebcam.addEventListener("click",()=>{
+    webcam.start();
+})
+
+takepicbutton.addEventListener("click",()=>{
+    let picture=webcam.snap();
+    takepicbutton.href=picture;
+})
+
+    </script>
+<style>
+    *{
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+    .main{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        background-position: center;
+    }
+    .main video{
+        display: flex;
+        
+    }
+    a, .startwebcam{
+        padding: 3px 2px;
+        background-color: orange;
+        color: wheat;
+        outline: none;
+        font-size: 21px;
+        cursor: pointer;
+        border: none;
+        margin-right: 3px;
+        text-decoration: none;
+    }
+    canvas{
+        display: none;
+    }
+    @media {
+
+    }
+</style>
+</body>
+</html>
